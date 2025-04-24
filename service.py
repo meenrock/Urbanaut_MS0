@@ -1,8 +1,10 @@
 from __future__ import annotations
 import bentoml
+from src.data_input.repositories import shp_input
 
 with bentoml.importing():
     from transformers import pipeline
+    import sedona
 
 
 EXAMPLE_INPUT = "Breaking News: In an astonishing turn of events, the small \
@@ -19,6 +21,7 @@ my_image = bentoml.images.PythonImage(python_version="3.11") \
         .python_packages("torch", "transformers")
 
 
+
 @bentoml.service(
     image=my_image,
     resources={"cpu": "2"},
@@ -26,6 +29,8 @@ my_image = bentoml.images.PythonImage(python_version="3.11") \
 )
 class Summarization:
     # Define the Hugging Face model as a class variable
+    test = shp_input.ShapeFileInputSpark()
+    test.read_shape_file("C:/GIS/input/N_COASTAL_CHANGE_20231203_192816.shp")
     model_path = bentoml.models.HuggingFaceModel("sshleifer/distilbart-cnn-12-6")
 
     def __init__(self) -> None:
