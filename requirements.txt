@@ -8,3 +8,9 @@ setuptools~=58.1.0
 bentoml~=1.4.7
 transformers~=4.51.3
 apache-sedona~=1.7.1
+pyspark~=3.5.5
+apache-airflow~=3.0.0
+colorlog~=6.9.0
+protobuf~=5.29.4
+cryptography~=44.0.2
+apache-airflow-providers-apache-spark
